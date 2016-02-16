@@ -193,13 +193,24 @@ var searchInFolder = function (defer, path, web) {
 
 		for (var i in covers) {
 			var coverFile = coverFolder + '/' + covers[i];
-			//console.log("Searching for cover " + coverFile);
 			if (fs.existsSync(coverFile)) {
-                var cacheFile=mountAlbumartFolder+'/'+coverFolder+'/extralarge.jpeg';
-                logger.info('Copying file to cache ['+cacheFile+']');
-                fs.ensureFileSync(cacheFile);
-                fs.copySync(coverFile,cacheFile);
-				defer.resolve(cacheFile);
+                		var cacheFile=mountAlbumartFolder+'/'+coverFolder+'/extralarge.jpeg';
+                		logger.info('Copying file to cache ['+cacheFile+']');
+                		fs.ensureFileSync(cacheFile);
+
+				// converting file to jpg
+				convert(coverFile,cacheFile,{ width: 1200 },
+				  function(err) {
+				    if (err) 
+				    {
+					logger.error('Could not convert albumart file, copying original file to cache');
+					fs.copySync(coverFile,cacheFile);
+				    }
+				    defer.resolve(cacheFile);
+				  }
+				);
+                		
+				
 				return defer.promise;
 			}
 		}
