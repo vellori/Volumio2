@@ -1,5 +1,6 @@
 'use strict';
 
+//	REQUIRE SECTION
 var albumart = require('album-art');
 var Q = require('kew');
 var download = require('file-download');
@@ -8,8 +9,10 @@ var fs = require('fs-extra');
 var uuid = require('node-uuid');
 var nodetools = require('nodetools');
 var mm = require('musicmetadata');
-
+var convert = require('netpbm').convert;
 var winston = require('winston');
+
+//  LOGGER
 var logger = new (winston.Logger)({
 	transports: [
 		new (winston.transports.Console)(),
