@@ -1,0 +1,7 @@
+{
+  "cards": [
+    {"name": "ALSA", "prettyname": "Audio Jack", "defaultmixer": "PCM","type":"integrated"},
+    {"name": "sndrpihifiberry", "prettyname": "Hifiberry DAC", "type":"i2S"},
+    {"name": "IQaudIODAC", "prettyname": "IQaudIO DAC", "type":"i2S"}
+  ]
+}
